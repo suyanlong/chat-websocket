@@ -1,46 +1,64 @@
-﻿var express = require('express')
-  , http = require('http')
-  , path = require('path');
+var express = require('express')
+  , path = require('path')
+  , app = express()
+  , server = require('http').createServer(app)
+  , io = require('socket.io').listen(server);
 
-var app = express();
-var server = http.createServer(app);
-var WebSocketServer = require('ws').Server;
-var wss = new WebSocketServer({server : server});
-var colors = [ 'red', 'green', 'blue', 'magenta', 'purple', 'plum', 'orange' ];
-colors.sort(function(a,b) { return Math.random() > 0.5; } );
-var clients = [];
+// var clients = [];
+// clients.push(client);
+// for (var i=0; i < clients.length; i++) {
+//       clients[i].socket.emit('message',obj);
+// }
 
-wss.on('connection', function(ws){
-clients.push(ws);
-var userName = false;
-var userColor = false;
-  ws.on('message', function(msg){
-    if(!userName){
-        userName = msg;
-        userColor = colors.shift();
-        ws.send(JSON.stringify({ type:'color', data: userColor }));
-        console.log(userName + ' login');
-    }else{
-        console.log(userName + ' say: ' + msg);
-        var obj = {
-          time: (new Date()).getTime(),
-          text: msg,
-          author: userName,
-          color: userColor
-        };
-        var json = JSON.stringify({type:'message', data: obj});
-         for (var i=0; i < clients.length; i++) {
-             clients[i].send(json);
-         }
-    }
-  });
-  ws.on('close', function(){
-  if(userName !== false && userColor != false){
-    var index = clients.indexOf(ws);
-    clients.splice(index, 1);
-    colors.push(userColor);
-  }  
-  });
+io.set('log level', 1); 
+io.on('connection', function (socket) {
+  socket.emit('open');//通知客户端已连接
+
+  // console.log(socket.handshake);
+
+  var client = {
+    socket:socket,
+    name:false,
+    color:getColor()
+  }
+  
+  socket.on('message', function(msg){
+    var obj = {time:getTime(),color:client.color};
+
+    if(!client.name){
+        client.name = msg;
+        obj['text']=client.name;
+        obj['author']='System';
+        obj['type']='welcome';
+        console.log(client.name + ' login');
+
+        socket.emit('system',obj);
+        socket.broadcast.emit('system',obj);
+     }else{
+        obj['text']=msg;
+        obj['author']=client.name;      
+        obj['type']='message';
+        console.log(client.name + ' say: ' + msg);
+
+        socket.emit('message',obj);
+        socket.broadcast.emit('message',obj);
+      }
+
+
+    });
+
+    socket.on('disconnect', function () {  
+      var obj = {
+        time:getTime(),
+        color:client.color,
+        author:'System',
+        text:client.name,
+        type:'disconnect'
+      };
+
+      socket.broadcast.emit('system',obj);
+      console.log(client.name + 'Disconnect');
+    });
   
 });
 
@@ -60,9 +78,21 @@ app.configure('development', function(){
 });
 
 app.get('/', function(req, res){
-res.sendfile('views/chat.html');
+  res.sendfile('views/chat.html');
 });
 
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+
+var getTime=function(){
+  var date = new Date();
+  return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+}
+
+var getColor=function(){
+  var colors = ['aliceblue','antiquewhite','aqua','aquamarine','pink','red','green',
+                'orange','blue','blueviolet','brown','burlywood','cadetblue'];
+  return colors[Math.round(Math.random() * 10000 % colors.length)];
+}

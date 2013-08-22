@@ -1,14 +1,10 @@
 chat-websocket
-=============
+===============
 
-a very simple chat demo using websocket.
+a very simple chat demo using websocket. Using socket.io instead of ws modules.
 
-Using socket.io instead of ws modules.
-
->npm install
-
->node app.js
-
+> npm install
+> node app.js
 
 ws modules fork from : feiyunruyue
 > https://github.com/feiyunruyue/chat-websocket

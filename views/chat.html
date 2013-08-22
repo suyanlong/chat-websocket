@@ -1,28 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>WebSockets - Simple chat</title>
-
-         <script src="javascripts/jquery.min.js"></script>
-        <style>
-        * { font-family:tahoma; font-size:12px; padding:0px; margin:0px; }
-        p { line-height:18px; }
-        div { width:500px; margin-left:auto; margin-right:auto;}
-        #content { padding:5px; background:#ddd; border-radius:5px;
-                   border:1px solid #CCC; margin-top:10px; }
-        #input { border-radius:2px; border:1px solid #ccc;
-                 margin-top:10px; padding:5px; width:400px;  }
-        #status { width:88px; display:block; float:left; margin-top:15px; }
-        </style>
-    </head>
-    <body>
-        <div id="content"></div>
-        <div>
-            <span id="status">Connecting...</span>
-            <input type="text" id="input"/>
-        </div>
-
-        <script src="javascripts/browser.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Socket.io - Simple chat</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/chat.js"></script>
+</head>
+<body>
+    <h1>Socket.io - Simple chat room</h1>
+    <div>
+        <span id="status">Connecting...</span>
+        <input type="text" id="input"/>
+    </div>
+    <div id="content"></div>
+</body>
 </html>
