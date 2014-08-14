@@ -11,12 +11,10 @@ http://blog.fens.me/nodejs-socketio-chat/
 Install
 ==================
 
-> npm install
+```{bash}
+git clone https://github.com/bsspirit/chat-websocket.git
+cd chat-websocket
+npm install
+node app.js
+```
 
-> node app.js
-
-See
-==================
-
-ws modules fork from : feiyunruyue
-> https://github.com/feiyunruyue/chat-websocket
