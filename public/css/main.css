@@ -15,7 +15,7 @@ p {
 }
 
 div {
-    width: 500px;
+    width: 1000px;
 }
 
 #content {
@@ -26,19 +26,30 @@ div {
     margin-top: 10px;
 }
 
-/*#input {*/
-    /*border-radius: 2px;*/
-    /*border: 1px solid #ccc;*/
-    /*margin-top: 10px;*/
-    /*padding: 5px;*/
-    /*width: 380px;*/
-/*}*/
+#input {
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 5px;
+    width: 380px;
+    display: inline;
+}
+
+#enter{
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 5px;
+    width: 80px;
+    display: inline;
+}
 
 #status {
     width: 100px;
     display: block;
     float: left;
     margin-top: 15px;
+
 }
 
 

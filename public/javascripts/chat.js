@@ -8,7 +8,7 @@ $(function () {
 
     //建立websocket连接
     //io  是一个全局变量！
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('http://150.221.80.3:3000');
 
     //收到server的连接确认，
     //客户端绑定事件，服务端触发，看来事件就是前后端之间约定的名字，调用回调！
@@ -32,13 +32,21 @@ $(function () {
     //监听message事件，打印消息信息
     socket.on('message', function (json) {
         // p 字符串拼接
-        var p = '<p><span style="color:' + json.color + '";>' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
-        if (json.author == myName) {
+        //var p = '<p><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
+        // var p = '<p align="right" ><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
+        //上面的也可以的。
+        //var p = '<p style="text-align:right " ><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
+        var p = '';
+        if (json.author == myName) {//交流对话，左右分开
             // p.textAlign = 'right';
             // p.text.css('text-align', 'left');
-
+            p = '<p style="text-align:right " ><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
+        } else {
+            p = '<p><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
         }
         content.prepend(p);
+        // $('p').css("display: inline-block");
+
     });
 
     //通过“回车”提交聊天信息

@@ -118,9 +118,9 @@ var getTime = function () {
 };
 
 var getColor = function () {
-    var colors = ['aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'pink', 'red', 'green',
+    // aquamarine 
+    var colors = ['aliceblue','aqua', 'aquamarine', 'pink', 'red', 'green',
         'orange', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue'
     ];
-
     return colors[Math.round(Math.random() * 10000 % colors.length)];
 };
