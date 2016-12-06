@@ -118,7 +118,8 @@ var getTime = function () {
 };
 
 var getColor = function () {
-    // aquamarine 
+    // aquamarine
+    
     var colors = ['aliceblue','aqua', 'aquamarine', 'pink', 'red', 'green',
         'orange', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue'
     ];

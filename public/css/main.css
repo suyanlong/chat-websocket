@@ -1,12 +1,8 @@
+/*作用：各个浏览器不一样，所以对所有的标签设置一些默认属性，统一属性。*/
 * {
     padding: 0px;
     margin: 0px;
-}
-
-body {
-    font-family: tahoma;
-    font-size: 12px;
-    margin: 10px;
+    /*background-color: #AFB8C1;*/
 }
 
 p {
@@ -14,33 +10,92 @@ p {
     padding: 2px;
 }
 
-div {
-    width: 1000px;
+.header {
+    /*background: #fff none repeat scroll 0 0;*/
+    border-bottom: 1px solid #e8e8e8;
+    width: auto;
+    height: 60px;
+    position: relative;
+    z-index: 1000;
 }
 
-#content {
-    padding: 5px;
-    background: #ddd;
+.bodyer {
+    width: 800px;
+    height: 450px;
     border-radius: 5px;
-    border: 1px solid #CCC;
-    margin-top: 10px;
+    background-color: #EEEEEE;
+    /*div标签居中*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    margin: auto;
+}
+/*.bodyer * {*/
+    /*height: 500px;*/
+/*}*/
+
+.bodyer .left-list {
+    background-color: #2E3641;
+    width: 200px;
+    height: 450px;
+    /*border-radius: 5px;*/
+    display: inline-block;
+}
+
+.bodyer .right-chat {
+    background-color: #EEEEEE;
+    display: inline-block;
+    float: right;
+    height: 450px;
+    width: 600px;
+    /*position: relative;*/
+    /*top: 388px;*/
+    /*z-index: 1001;*/
+}
+
+/*body {*/
+/*font-family: tahoma;*/
+/*font-size: 12px;*/
+/*margin: 10px;*/
+/*}*/
+
+/*div {*/
+/*width: 600px;*/
+/*}*/
+
+.bodyer .right-chat #content {
+    height: 300px;
+    width: 600px;
+    /*padding: 5px;*/
+    /*background: #ddd;*/
+    /*border-radius: 5px;*/
+    /*border: 1px solid #CCC;*/
+    /*margin-top: 10px;*/
+}
+
+.bodyer .right-chat .cin-info {
+    /*position: relative;*/
+    top: 388px;
+    height: 80px;
 }
 
 #input {
+    background-color: #EEEEEE;;
     border-radius: 2px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
+    /*border: 1px solid #ccc;*/
+    /*margin-top: 10px;*/
     padding: 5px;
-    width: 380px;
+    width: 580px;
+    height: 30px;
     display: inline;
 }
 
-#enter{
+#enter {
     border-radius: 2px;
     border: 1px solid #ccc;
     margin-top: 10px;
-    padding: 5px;
+    /*padding: 5px;*/
     width: 80px;
+    height: 30px;
     display: inline;
 }
 
@@ -49,7 +104,16 @@ div {
     display: block;
     float: left;
     margin-top: 15px;
+}
+
+.chat-title .title {
+    text-align: center;
+    /*align-self: center;*/
+    /*align-text: center;*/
 
 }
 
-
+.tuban {
+    height: 40px;
+    width: 600px;
+}
