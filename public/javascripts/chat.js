@@ -4,7 +4,9 @@ $(function () {
     var content = $('#content');
     var status = $('#status');
     var input = $('#input');
-    var myName = false;
+    var title = $('.title');
+    var leftList = $('.left-list');
+    var myName = '';
 
     //建立websocket连接
     //io  是一个全局变量！
@@ -21,12 +23,22 @@ $(function () {
     socket.on('system', function (json) {
         var p = '';
         if (json.type === 'welcome') {
-            if (myName == json.text) status.text(myName + ': ').css('color', json.color);
-            p = '<p style="background:' + json.color + '">system  @ ' + json.time + ' : Welcome ' + json.text + '</p>';
+            // if (myName == json.text) status.text(myName + ': ').css('color', json.color);
+            status.text("");
+            p = '<p style="background:' + json.color + '"> ' + json.text + '</p>';
+            // p = '<p>' + json.text + '</p>';
+            leftList.append(p);
+
         } else if (json.type == 'disconnect') {
-            p = '<p style="background:' + json.color + '">system  @ ' + json.time + ' : Bye ' + json.text + '</p>';
+            p = '<p>' + json.text + '</p>';
+            leftList.remove(json.text);
+            // p = '<p style="background:' + json.color + '">system  @ ' + json.time + ' : Bye ' + json.text + '</p>';
         }
-        content.prepend(p);
+
+        // 怎么在后面追加？？
+        // content.prepend(p);
+        // content.append(p)
+        // content.after(p);
     });
 
     //监听message事件，打印消息信息
@@ -40,11 +52,13 @@ $(function () {
         if (json.author == myName) {//交流对话，左右分开
             // p.textAlign = 'right';
             // p.text.css('text-align', 'left');
+
             p = '<p style="text-align:right " ><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
         } else {
             p = '<p><span style="color:' + json.color + '">' + json.author + '</span> @ ' + json.time + ' : ' + json.text + '</p>';
         }
         content.prepend(p);
+        // content.append(p);
         // $('p').css("display: inline-block");
 
     });
@@ -55,8 +69,9 @@ $(function () {
         if (!msg) return;
         socket.send(msg);
         $('#input').val('');
-        if (myName === false) {
+        if (myName == false) {
             myName = msg;
+            title.text(msg);
         }
 
     };

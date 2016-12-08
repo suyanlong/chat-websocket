@@ -33,6 +33,7 @@ p {
     /*height: 500px;*/
 /*}*/
 
+/*左边列表布局*/
 .bodyer .left-list {
     background-color: #2E3641;
     width: 200px;
@@ -41,13 +42,14 @@ p {
     display: inline-block;
 }
 
+/*右边的布局*/
 .bodyer .right-chat {
     background-color: #EEEEEE;
     display: inline-block;
     float: right;
     height: 450px;
     width: 600px;
-    /*position: relative;*/
+    position: relative;
     /*top: 388px;*/
     /*z-index: 1001;*/
 }
@@ -62,9 +64,12 @@ p {
 /*width: 600px;*/
 /*}*/
 
+/*聊天信息框*/
 .bodyer .right-chat #content {
     height: 300px;
     width: 600px;
+    /*超出或者溢出隐藏。*/
+    overflow:hidden;
     /*padding: 5px;*/
     /*background: #ddd;*/
     /*border-radius: 5px;*/
@@ -72,24 +77,32 @@ p {
     /*margin-top: 10px;*/
 }
 
+/*输入框*/
 .bodyer .right-chat .cin-info {
-    /*position: relative;*/
-    top: 388px;
-    height: 80px;
+    position: absolute;
+    bottom: 00px;
+    left: 00px;
+    /*height:60px;*/
 }
 
-#input {
-    background-color: #EEEEEE;;
-    border-radius: 2px;
+.bodyer .right-chat .cin-info #input {
+    background-color: #EEEEEE;
+    border-width: 0px;
+    /*border-radius: 2px;*/
     /*border: 1px solid #ccc;*/
     /*margin-top: 10px;*/
-    padding: 5px;
-    width: 580px;
-    height: 30px;
-    display: inline;
+    /*padding: 5px;*/
+    width: 600px;
+    height: 80px;
+    /*display: inline;*/
 }
 
-#enter {
+.bodyer .right-chat .cin-info #enter {
+    /*float: right; （1）绝对定位时以父元素为基准点，进行定位---会脱离文档流。*/
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
     border-radius: 2px;
     border: 1px solid #ccc;
     margin-top: 10px;
@@ -99,21 +112,26 @@ p {
     display: inline;
 }
 
-#status {
-    width: 100px;
-    display: block;
-    float: left;
-    margin-top: 15px;
+.bodyer .right-chat .cin-info #status {
+    /*width: 100px;*/
+    /*display: block;*/
+    /*float: left;*/
+    /*margin-top: 15px;*/
 }
 
-.chat-title .title {
+.bodyer .right-chat .chat-title .title {
     text-align: center;
+    height: 20px;
     /*align-self: center;*/
     /*align-text: center;*/
-
 }
 
-.tuban {
-    height: 40px;
-    width: 600px;
+.bodyer .right-chat .tuban {
+    text-align: center;
+    /*height: 40px;*/
+    /*width: 600px;*/
+}
+hr{
+    background: #51C332;
+    height:0.05px;
 }

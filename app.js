@@ -45,9 +45,9 @@ ios.on('connection', function (socket) {
             obj['author'] = 'System';
             obj['type'] = 'welcome';
             console.log(client.name + ' login');
-            //返回欢迎语
+            //返回欢迎语 当前的。
             socket.emit('system', obj);
-            //广播新用户已登陆
+            //广播新用户已登陆 所有的。
             var num = socket.broadcast.emit('system', obj);//通过监听器参数，实现通讯！
 
         } else {
@@ -60,6 +60,7 @@ ios.on('connection', function (socket) {
 
             // 返回消息（可以省略）
             socket.emit('message', obj);
+
             // 广播向其他用户发消息
             socket.broadcast.emit('message', obj);
         }
@@ -75,9 +76,9 @@ ios.on('connection', function (socket) {
             type: 'disconnect'
         };
 
-        // 广播用户已退出
-        socket.broadcast.emit('system', obj);
-        console.log(client.name + 'Disconnect');
+    // 广播用户已退出
+    socket.broadcast.emit('system', obj);
+    console.log(client.name + 'Disconnect');
     });
 
 });
@@ -119,8 +120,8 @@ var getTime = function () {
 
 var getColor = function () {
     // aquamarine
-    
-    var colors = ['aliceblue','aqua', 'aquamarine', 'pink', 'red', 'green',
+
+    var colors = ['aliceblue', 'aqua', 'aquamarine', 'pink', 'red', 'green',
         'orange', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue'
     ];
     return colors[Math.round(Math.random() * 10000 % colors.length)];
