@@ -9,7 +9,8 @@ $(function () {
     var myName = '';
 
     //建立websocket连接
-    //io  是一个全局变量！
+    //io  是一个全局变量！ io在哪里传过来的？？？难道就没有思考？？
+    //这里的io 对象是怎么做到传给Web端的？？？
     socket = io.connect('http://150.221.80.3:3000');
 
     //收到server的连接确认，

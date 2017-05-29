@@ -17,6 +17,7 @@ var express = require('express'),
 
 //WebSocket连接监听 connection事件，是socket.io预定的事件。库来来触发这个事件。
 //看来，怎么约定事件，理清楚事件的订阅者以及触发者，这个还是很重要的！
+
 ios.on('connection', function (socket) {
     //
     socket.emit('open'); //通知客户端已连接，通知客户端。
@@ -29,7 +30,7 @@ ios.on('connection', function (socket) {
         socket: socket,
         name: false,
         color: getColor()
-    }
+    };
 
     // 对message事件的监听
     socket.on('message', function (msg) {
@@ -76,9 +77,9 @@ ios.on('connection', function (socket) {
             type: 'disconnect'
         };
 
-    // 广播用户已退出
-    socket.broadcast.emit('system', obj);
-    console.log(client.name + 'Disconnect');
+        // 广播用户已退出
+        socket.broadcast.emit('system', obj);
+        console.log(client.name + 'Disconnect');
     });
 
 });
